@@ -1,6 +1,6 @@
 {
   "run_list": [
-    "yum",
+    "recipe[yum-epel]",
     "recipe[mysql]",
     "recipe[nginx]"
   ],

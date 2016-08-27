@@ -7,12 +7,12 @@ user nginx;
 # nginxのworkerプロセスの数（普通はCPUのコア数以下）
 worker_processes 2;
 
-error_log /var/log/nginx/error.log worn;
+error_log /var/log/nginx/error.log warn;
 
-pid /var/run/nginx.pid
+pid /var/run/nginx.pid;
 
 events {
-  1つのworkerプロセスが同時に処理できる最大コネクション数
+  # 1つのworkerプロセスが同時に処理できる最大コネクション数
   worker_connections 1024;  
 }
 

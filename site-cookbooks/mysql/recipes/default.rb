@@ -8,10 +8,10 @@ rpm_package 'mysql-community-release' do
   action :install
 end
 
-package "mysql-server" do
+package 'mysql-server' do
   action :install
 end
 
-service "mysql" do
+service 'mysqld' do
   action [:enable, :start]
 end
