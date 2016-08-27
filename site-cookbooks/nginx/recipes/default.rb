@@ -1,7 +1,6 @@
-include_recipe "yum-epel"
-
 package "nginx" do
   action :install
+  options "--enablerepo=nginx"
 end
 
 service "nginx" do
