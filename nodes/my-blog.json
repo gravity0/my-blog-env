@@ -1,6 +1,8 @@
 {
   "run_list": [
-    "recipe[mysql]"
+    "yum::epel",
+    "recipe[mysql]",
+    "recipe[nginx]"
   ],
   "automatic": {
     "ipaddress": "my-blog"
