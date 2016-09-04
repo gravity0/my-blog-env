@@ -1,8 +1,10 @@
 {
   "run_list": [
+    "recipe[yum_repo]",
     "recipe[yum-epel]",
     "recipe[mysql]",
-    "recipe[nginx]"
+    "recipe[nginx]",
+    "recipe[php]"
   ],
   "automatic": {
     "ipaddress": "my-blog"
