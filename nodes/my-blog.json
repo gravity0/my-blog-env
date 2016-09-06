@@ -6,6 +6,12 @@
     "recipe[nginx]",
     "recipe[php]"
   ],
+  "mysql" : {
+    "rootpass" : "",
+    "db" : "my-blog",
+    "user_name" : "my-blog",
+    "user_pass" : "my-blog"
+  },
   "automatic": {
     "ipaddress": "my-blog"
   }
