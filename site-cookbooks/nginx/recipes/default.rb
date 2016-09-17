@@ -5,13 +5,9 @@ package "nginx" do
 end
 
 service "nginx" do
-  #サーバの設定ファイルに文法エラーがある状態だと起動に失敗するため、:startを使わない
-  #自作設定ファイルを設置する前に、パッケージデフォルトのまま起動してしまうため、:startを使わない
-  action [:enable, :start]
-  supports :status => true, :restart => true, :reload => true
+  action [:enable]
+  supports :start => true, :status => true, :restart => true, :reload => true
 end
-
-
 template "/etc/nginx/nginx.conf" do
   owner 'root'
   group 'root'
@@ -31,3 +27,4 @@ template "/etc/init.d/nginx" do
   group 'root'
   mode "0755"
 end
+

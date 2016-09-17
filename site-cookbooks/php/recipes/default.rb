@@ -1,7 +1,7 @@
 %w(php-fpm php-mysql php-mbstring php-gd).each do |p|
   package p do
     action :install
-    options "--enablerepo=remi-php56"
+    options "--enablerepo=remi-php56 --skip-broken"
   end
 end
 
@@ -15,12 +15,12 @@ template "timezone.ini" do
 end
 
 
-#template '/etc/php-fpm.d/www.conf' do
-#  source 'www.conf.erb'
-#  owner 'root'
-#  group 'root'
-#  mode '0644'
-#end
+template '/etc/php-fpm.d/www.conf' do
+  source 'www.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
 
 template "/etc/init.d/php-fpm" do
   source "php-fpm_app.erb"
@@ -28,3 +28,10 @@ template "/etc/init.d/php-fpm" do
   group 'root'
   mode "0755"
 end
+
+
+service "php-fpm" do
+  action [:enable] 
+  supports :start => true, :status => true, :restart => true, :reload => true
+end
+

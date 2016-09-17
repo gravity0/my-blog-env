@@ -1,0 +1,12 @@
+{
+  "name": "production",
+  "description":"variables depends on environment",
+  "chef_type": "production",
+  "json_class": "Chef::Environment",
+  "default_attributes": {
+    "my-blog": {
+      "app_directory": "/var/www/my-blog"
+    }
+  },
+  "override_attributes": {}
+}

@@ -1,17 +1,14 @@
 server {
   listen 80;
-  root /vagrant/www/wordpress/;
-  
-  index index.php;
 
   location / {
-    root   /vagrant/www/wordpress;
+    root   <%=node[:"my-blog"][:app_directory]%>;
     index  index.php;
   }
 
   location ~ \.php$ {
-    root                /vagrant/www/wordpress;
-    fastcgi_pass        unix:/run/php-fpm/php-fpm.sock;
+    root                <%=node[:"my-blog"][:app_directory]%>;
+    fastcgi_pass        unix:/var/run/php-fpm//php-fpm.sock;
     fastcgi_index       index.php;
     fastcgi_param       SCRIPT_FILENAME $document_root$fastcgi_script_name;
     include fastcgi_params;

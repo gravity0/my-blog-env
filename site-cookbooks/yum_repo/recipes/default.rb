@@ -1,8 +1,17 @@
-bash 'add_remi' do
-  user 'root'
-  code <<-EOC
-    rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-    sed -i -e "s/enabled *= *1/enabled=0/g" /etc/yum.repos.d/remi.repo
-  EOC
-  creates "/etc/yum.repos.d/remi.repo"
+# epel
+package 'epel-release.noarch' do
+  action :install
+end
+
+# remi
+remote_file "#{Chef::Config[:file_cache_path]}/remi-release-6.rpm" do
+    source "http://rpms.famillecollet.com/enterprise/remi-release-6.rpm"
+    not_if "rpm -qa | grep -q '^remi-release'"
+    action :create
+    notifies :install, "rpm_package[remi-release]", :immediately
+end
+
+rpm_package "remi-release" do
+    source "#{Chef::Config[:file_cache_path]}/remi-release-6.rpm"
+    action :nothing
 end

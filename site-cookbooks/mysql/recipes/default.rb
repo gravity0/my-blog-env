@@ -1,19 +1,23 @@
-remote_file "#{Chef::Config[:file_cache_path]}/mysql-community-release-el7-5.noarch.rpm" do
-  source 'http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm'
+remote_file "#{Chef::Config[:file_cache_path]}/mysql-community-release-el6-5.noarch.rpm" do
+  source 'http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm'
   action :create
 end
 
-rpm_package 'mysql-community-release' do
-  source "#{Chef::Config[:file_cache_path]}/mysql-community-release-el7-5.noarch.rpm"
+rpm_package "mysql-community-release" do
+  source "#{Chef::Config[:file_cache_path]}/mysql-community-release-el6-5.noarch.rpm"
   action :install
 end
 
-package 'mysql-server' do
+# install mysql community server
+yum_package "mysql-community-server" do
   action :install
+  version "5.6.15-1.el6"
+  flush_cache [:before]
 end
 
-service 'mysqld' do
-  action [:enable, :start]
+service "mysqld" do
+  supports :status => true, :restart => true, :reload => true
+  action [ :enable, :start ]
 end
 
 execute "mysql-create-user" do

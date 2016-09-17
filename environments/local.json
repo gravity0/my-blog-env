@@ -1,0 +1,12 @@
+{
+  "name": "local",
+  "description":"variables depends on environment",
+  "chef_type": "local",
+  "json_class": "Chef::Environment",
+  "default_attributes": {
+    "my-blog": {
+      "app_directory": "/vagrant/www/my-blog"
+    }
+  },
+  "override_attributes": {}
+}

@@ -1,5 +1,5 @@
 {
-  "environment": "local",
+  "environment": "production",
   "run_list": [
     "recipe[yum_repo]",
     "recipe[yum-epel]",
@@ -16,6 +16,6 @@
     "user_pass" : "my-blog"
   },
   "automatic": {
-    "ipaddress": "my-blog"
+    "ipaddress": "dti"
   }
 }
